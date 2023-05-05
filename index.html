@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+    <head>
+
+        <meta charset="UTF-8">
+        <title> Encriptador</title>
+        <link rel="stylesheet" href="carpeta_css/reset.css">
+        <link rel="stylesheet" href="carpeta_css/style-encriptador.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" rel="stylesheet">
+        
+
+    </head>
+
+    <body>
+        <header>
+
+            <img class=logo src="imagenes/Logo.png" alt="logo Alura">
+            <p>Encriptador</p>
+    
+        </header>
+
+        <main> 
+
+            <div class="zona-texto">
+
+                <textarea class="escribir" id="texto" cols="70" rows="31" placeholder="Ingrese el texto aqui "
+                ></textarea>  
+                
+        
+            </div>
+
+            <div><!-- zona advertencia y botones -->
+
+                <img class="interrogante" src="imagenes/bi_exclamation-circle-fill-1.png" alt="!">  
+                <p class="advertencia"> solo letras minúsculas y sin acentos </p>
+                
+                <button id = "botonencriptar" class="boton-encriptar">Encriptar</button>
+                <button id = "botondesencriptar"class="boton-desencriptar">Dsesencriptar</button>
+
+            </div>
+            
+            <div class="area-respuesta">
+
+                <img class="rectangulo" src="imagenes/Rectangle 1.png" alt=" Rectangulo">
+
+                <img class="persona" src="imagenes/Muñeco.png" alt="persona" > 
+
+                <p class="texto-noencontrado"> Ningún mensaje fue encontrado <em> Ingresa el texto que deseas encriptar o desencriptar </em> </p>
+
+                <textarea class="zona-respuesta" id="respuesta"></textarea>
+                <button id = "copiar"class="boton-copiar">Copiar</button>
+
+            </div>
+
+            <script>
+
+                function encriptar() {
+            
+                    var parrafo = document.getElementById("texto").value;
+
+                    //replace funciona para buscar en este caso las vocales en una cadena de texto y la g es para realizar una busqueda global es decir en todo el texto 
+                    var encriptado = parrafo.replace(/e/g, "enter") 
+                                                .replace(/i/g, "imes")
+                                                .replace(/a/g, "ai")
+                                                .replace(/o/g, "ober")
+                                                .replace(/u/g, "ufat");
+
+                    document.getElementById("respuesta").value = encriptado;
+
+                    if(texto.value == ""){
+                    copiar.style.display = "none";
+                    respuesta.style.display = "none";
+                    }   
+
+                    else{
+                        copiar.style.display = "block";
+                        respuesta.style.display = "block";
+                        texto.value=""
+                    }
+                }
+
+                function desencriptar() {
+                    
+                    var parrafo = document.getElementById("texto").value;
+
+                    var desencriptado = parrafo.replace(/enter/g, "e")
+                                                .replace(/imes/g, "i")
+                                                .replace(/ai/g, "a")
+                                                .replace(/ober/g, "o")
+                                                .replace(/ufat/g, "u");
+
+                    // Mostrar el texto encriptado
+                 document.getElementById("respuesta").value = desencriptado;
+
+                 if(texto.value == ""){
+                    copiar.style.display = "none";
+                    respuesta.style.display = "none";
+                    }
+
+                    else{
+                        copiar.style.display = "block";
+                        respuesta.style.display = "block";
+                        texto.value=""
+                        
+                    }
+                }
+
+                function copiarTexto(){
+                  var textocopiado= document.getElementById("respuesta")
+                  textocopiado.select();
+                  document.execCommand("copy");
+                    
+                }
+
+                var botonencriptar = document.getElementById("botonencriptar")
+                var botondesencriptar = document.getElementById("botondesencriptar")
+                var copiar = document.getElementById("copiar")
+                var texto = document.getElementById("texto")
+                var respuesta = document.getElementById("respuesta")
+                botonencriptar.onclick= encriptar ;
+                botondesencriptar.onclick= desencriptar;
+                copiar.onclick = copiarTexto; 
+
+                
+            </script>
+
+ 
+        </main>
+        
+    </body>
+
+</html>
+ 
